@@ -20,15 +20,15 @@ The system supports:
 Below are links to the required artifacts for the scoring criteria, located in the `docs/` folder.
 
 📝 Requirements Engineering (Lab 01 & 02)
-* [Requirements Specification (SRS)](docs/Requirements.md) - *Criteria #1*
-* [Gherkin Feature Specifications](docs/Requirements.md#gherkin-feature-specifications) - *Criteria #2*
-* [Requirements Checklist](docs/Checklist.md) - *Criteria #3*
+* [Requirements Specification (SRS)](Requirements.md) - *Criteria #1*
+* [Gherkin Feature Specifications](Requirements.md#gherkin-feature-specifications) - *Criteria #2*
+* [Requirements Checklist](Checklist.md) - *Criteria #3*
 
 🧪 Test Design (Lab 03 & 06)
-* [Control Flow Graph (Pricing Logic)](docs/ControlFlowGraph.png) - *Criteria #5*
-* [Requirement Traceability Matrix (RTM)](docs/TestPlan.md#requirement-traceability-matrix-rtm) - *Criteria #10*
-* [Master Test Plan](docs/TestPlan.md) - *Criteria #15*
-* [Defect Report](docs/DefectReport.md) - *Criteria #4*
+* [Control Flow Graph (Pricing Logic)](RailFarePricing_CFD.png) - *Criteria #5*
+* [Requirement Traceability Matrix (RTM)](TestPlan.md#requirement-traceability-matrix-rtm) - *Criteria #10*
+* [Master Test Plan](TestPlan.md) - *Criteria #15*
+* [Defect Report](DefectReport.md) - *Criteria #4*
 
 ⚙️ Implementation (Lab 05)
 * **Source Code** - *Criteria #9*
