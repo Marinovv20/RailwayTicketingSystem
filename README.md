@@ -25,7 +25,7 @@ Below are links to the required artifacts for the scoring criteria, located in t
 * [Requirements Checklist](Checklist.md) - *Criteria #3*
 
 🧪 Test Design (Lab 03 & 06)
-* [Control Flow Graph (Pricing Logic)](ControlFlowGraph.png) - *Criteria #5*
+* [Control Flow Graph (Pricing Logic)](RailFarePricing_CFD.png) - *Criteria #5*
 * [Requirement Traceability Matrix (RTM)](TestPlan.md#requirement-traceability-matrix-rtm) - *Criteria #10*
 * [Master Test Plan](TestPlan.md) - *Criteria #15*
 * [Defect Report](DefectReport.md) - *Criteria #4*
