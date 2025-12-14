@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailwayTicketing.Core", "RailwayTicketing.Core\RailwayTicketing.Core.csproj", "{76B2D58D-1063-43A2-8DEC-C0964242675B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailwayTicketing.Services", "RailwayTicketing.Services\RailwayTicketing.Services.csproj", "{A2A87C83-E0B9-4D17-8E95-0C68CBB4E23E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailwayTicketing.App", "RailwayTicketing.App\RailwayTicketing.App.csproj", "{48136192-3F14-4F62-BDF9-DFB31AD08910}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailwayTicketing.Tests", "RailwayTicketing.Tests\RailwayTicketing.Tests.csproj", "{9673B998-3395-48F1-ABE8-02A4EB3AEEDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		Checklist.md = Checklist.md
+		DefectReport.md = DefectReport.md
+		..\..\..\Downloads\RailFarePricing_CFD.png = ..\..\..\Downloads\RailFarePricing_CFD.png
+		..\..\..\Downloads\RailReservation_CFD.png = ..\..\..\Downloads\RailReservation_CFD.png
+		Requirements.md = Requirements.md
+		TestPlan.md = TestPlan.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76B2D58D-1063-43A2-8DEC-C0964242675B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76B2D58D-1063-43A2-8DEC-C0964242675B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76B2D58D-1063-43A2-8DEC-C0964242675B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76B2D58D-1063-43A2-8DEC-C0964242675B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A87C83-E0B9-4D17-8E95-0C68CBB4E23E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A87C83-E0B9-4D17-8E95-0C68CBB4E23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A87C83-E0B9-4D17-8E95-0C68CBB4E23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A87C83-E0B9-4D17-8E95-0C68CBB4E23E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48136192-3F14-4F62-BDF9-DFB31AD08910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48136192-3F14-4F62-BDF9-DFB31AD08910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48136192-3F14-4F62-BDF9-DFB31AD08910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48136192-3F14-4F62-BDF9-DFB31AD08910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9673B998-3395-48F1-ABE8-02A4EB3AEEDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9673B998-3395-48F1-ABE8-02A4EB3AEEDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9673B998-3395-48F1-ABE8-02A4EB3AEEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9673B998-3395-48F1-ABE8-02A4EB3AEEDF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10419E77-7C2A-49AD-87F7-08728510603B}
+	EndGlobalSection
+EndGlobal
