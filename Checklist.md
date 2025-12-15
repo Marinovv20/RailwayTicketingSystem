@@ -4,18 +4,15 @@ Requirements Checklist Application
 
 Checklist Results
 
-| Criteria | Status | Notes |
-| :--- | :--- | :--- |
-| **BR1** (Traceability) | **Pass** | Each requirement connects to the background section explaining the need for self-service booking. |
-| **BR2** (Unique IDs) | **Pass** | All requirements tagged: FR-01 through FR-10. No duplicates. |
-| **BR3** (Impl. Neutral) | **Pass** | Requirements focus on "what" not "how" (e.g., NFR-01 specifies storage concept, not DB engine). |
-| **BR4** (Clear/Concise) | **Pass** | All under 50 words. FR-01: 28 words, FR-02: 26 words. |
-| **BR5** (Measurable) | **Pass** | Specific values used: "7 days", "34%", "5%", "09:30". |
-| **BR10** (Consistency) | **Pass** | Terminology "Railcard" and "Round Trip" used uniformly. |
-| **BR11** (Viability) | **Pass** | System uses .NET 8 and standard libraries. Completed within schedule. |
+Criteria,Status,Notes 
+BR1 (Traceability),Pass,"Requirements map to background: Self-service, Bulgarian Route constraints, and User Modification needs."
+BR2 (Unique IDs),Pass,All requirements tagged: FR-01 through FR-12 (Added Schedule & Modify). No duplicates.
+BR3 (Impl. Neutral),Pass,"Focuses on ""what"" (e.g., ""System displays schedule"") not ""how"" (e.g., ""Use List<RouteDefinition>"")."
+BR4 (Clear/Concise),Pass,All under 50 words. FR-11 (Schedule): 22 words.
+BR5 (Measurable),Pass,"Specifics defined: ""Sofia->Plovdiv"", ""34%"" (Senior), ""09:30"" (Saver start)."
+BR10 (Consistency),Pass,"Terminology ""Modify"", ""Railcard"", and ""Round Trip"" used uniformly."
+BR11 (Viability),Pass,System uses .NET 8. ScheduleService and Pricing logic implemented successfully.
 
 Final Quality Checks
-* **FQ1 (Stakeholder Review):** Pass (Academic Context). Self-review and instructor feedback incorporated.
-* **FQ2 (Documentation):** Pass. Submitted via Git and available for review.
-
-**Overall Assessment:** Requirements meet checklist standards and are ready for implementation.
+FQ1 (Stakeholder Review): Pass. (Self-Review verified against Gherkin Scenarios).
+FQ2 (Documentation): Pass. Updated to reflect Module 1 (Schedule) and Module 3 (Modify).
