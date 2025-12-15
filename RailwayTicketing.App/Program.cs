@@ -148,28 +148,51 @@ namespace RailwayTicketing.App
 			var history = _userService.GetHistory();
 			var res = history.FirstOrDefault(r => r.ReservationId == id);
 
-			if (res == null)
+			if (res == null || res.IsCancelled)
 			{
-				Console.WriteLine("ID Not Found.");
+				Console.WriteLine("Error: Reservation not found or already cancelled.");
 				return;
 			}
 
-			Console.WriteLine($"Current Trip: {res.TripDetails.StartCity} -> {res.TripDetails.Destination} at {res.TripDetails.TravelDate:HH:mm}");
-			Console.Write("Enter New Hour of Travel (0-23): ");
-			int newHour = int.Parse(Console.ReadLine());
+			var route = _scheduleService.GetRoutes()
+				.FirstOrDefault(r => r.From == res.TripDetails.StartCity && r.To == res.TripDetails.Destination);
 
-			DateTime newDate = res.TripDetails.TravelDate.Date.AddHours(newHour);
-
-			bool success = _userService.ModifyReservation(id, newDate, _pricingService);
-
-			if (success)
+			if (route == null)
 			{
-				var updatedRes = _userService.GetHistory().First(r => r.ReservationId == id);
-				Console.WriteLine($"Modification Success! New Price: ${updatedRes.FinalPrice}");
+				Console.WriteLine("Error: Original route schedule not found.");
+				return;
+			}
+
+			Console.WriteLine($"\nSelect new time for {route.From} -> {route.To}:");
+			for (int i = 0; i < route.DepartureTimes.Count; i++)
+			{
+				Console.WriteLine($"{i + 1}. {route.DepartureTimes[i]:hh\\:mm}");
+			}
+
+			Console.Write("Select an option number: ");
+			if (int.TryParse(Console.ReadLine(), out int timeIndex) && timeIndex > 0 && timeIndex <= route.DepartureTimes.Count)
+			{
+				TimeSpan newTime = route.DepartureTimes[timeIndex - 1];
+
+				DateTime originalDate = res.TripDetails.TravelDate.Date; 
+				DateTime newDateTime = originalDate.Add(newTime);
+
+				bool success = _userService.ModifyReservation(id, newDateTime, _pricingService);
+
+				if (success)
+				{
+					var updatedRes = _userService.GetHistory().First(r => r.ReservationId == id);
+					Console.WriteLine($"\nSuccess! New Time: {updatedRes.TripDetails.TravelDate:HH:mm}");
+					Console.WriteLine($"New Price: ${updatedRes.FinalPrice:F2} (Price updated based on new time)");
+				}
+				else
+				{
+					Console.WriteLine("Update failed.");
+				}
 			}
 			else
 			{
-				Console.WriteLine("Failed to modify (Reservation might be cancelled).");
+				Console.WriteLine("Invalid selection.");
 			}
 		}
 
