@@ -54,20 +54,11 @@ All documentation required for grading is located in the `/docs` directory.
 
 **Prerequisites:** .NET 8.0 SDK
 
-1.  **Clone the repository**
-    ```bash
-    git clone [https://github.com/YourUsername/RailwayTicketing.git](https://github.com/YourUsername/RailwayTicketing.git)
-    ```
-2.  **Run the Application**
+  **Run the Application**
     ```bash
     cd RailwayTicketing.App
     dotnet run
     ```
-3.  **Operation Mode**
-    * Follow the on-screen prompts to set up your User Profile.
-    * Select **Option 1** to view the live Bulgarian train schedule.
-    * Select **Option 3** to test the new "Modify Reservation" feature.
-
 ---
 
 ## 🧪 Testing Strategy
