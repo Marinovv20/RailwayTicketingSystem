@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Linq; 
 using RailwayTicketing.Core.Interfaces;
 using RailwayTicketing.Core.Models;
 using RailwayTicketing.Services;
@@ -19,14 +20,13 @@ namespace RailwayTicketing.Tests
 			_userService = new UserService();
 		}
 
-
 		[Test]
 		public void CalculatePrice_SaverTime_AppliesDiscount()
 		{
 			var trip = new Trip
 			{
-				DistanceKm = 100, 
-				TravelDate = DateTime.Today.AddHours(10),
+				DistanceKm = 100,
+				TravelDate = DateTime.Today.AddHours(10), 
 				Type = TicketType.OneWay
 			};
 			var passenger = new Passenger { Age = 30, RailCard = RailCardType.None };
@@ -39,7 +39,12 @@ namespace RailwayTicketing.Tests
 		[Test]
 		public void CalculatePrice_SeniorCitizen_Applies34Percent()
 		{
-			var trip = new Trip { DistanceKm = 100, TravelDate = DateTime.Today.AddHours(8) }; 
+			var trip = new Trip
+			{
+				DistanceKm = 100,
+				TravelDate = DateTime.Today.AddHours(8), 
+				Type = TicketType.OneWay
+			};
 			var passenger = new Passenger { Age = 65, RailCard = RailCardType.Over60 };
 
 			double price = _pricingService.CalculateFinalPrice(trip, passenger);
@@ -53,8 +58,8 @@ namespace RailwayTicketing.Tests
 			var trip = new Trip
 			{
 				DistanceKm = 100,
-				TravelDate = DateTime.Today.AddHours(8),
-				Type = TicketType.RoundTrip 
+				TravelDate = DateTime.Today.AddHours(8), 
+				Type = TicketType.RoundTrip
 			};
 			var passenger = new Passenger { Age = 30, RailCard = RailCardType.None };
 
@@ -63,11 +68,10 @@ namespace RailwayTicketing.Tests
 			Assert.AreEqual(100.00, price, 0.01);
 		}
 
-
 		[Test]
 		public void UserService_CanCreateAndCancelReservation()
 		{
-			_userService.CreateProfile("TestUser", "Address");
+			_userService.CreateProfile("TestUser", "Address", 30, RailCardType.None);
 
 			var res = new Reservation { ReservationId = "123", IsCancelled = false };
 			_userService.AddReservation(res);
@@ -78,6 +82,42 @@ namespace RailwayTicketing.Tests
 
 			Assert.IsTrue(cancelled);
 			Assert.IsTrue(_userService.GetHistory()[0].IsCancelled);
+		}
+
+		[Test]
+		public void UserService_ModifyReservation_UpdatesPrice()
+		{
+			_userService.CreateProfile("TestUser", "Address", 30, RailCardType.None);
+
+			var trip = new Trip
+			{
+				DistanceKm = 100,
+				TravelDate = DateTime.Today.AddHours(10), 
+				Type = TicketType.OneWay
+			};
+
+			double initialPrice = _pricingService.CalculateFinalPrice(trip, new Passenger { Age = 30 });
+
+			var res = new Reservation
+			{
+				ReservationId = "999",
+				TripDetails = trip,
+				PassengerDetails = new Passenger { Age = 30, RailCard = RailCardType.None },
+				FinalPrice = initialPrice,
+				IsCancelled = false
+			};
+
+			_userService.AddReservation(res);
+
+			DateTime newDate = DateTime.Today.AddHours(8);
+			bool modified = _userService.ModifyReservation("999", newDate, _pricingService);
+
+			Assert.IsTrue(modified);
+
+			var updatedRes = _userService.GetHistory().First(r => r.ReservationId == "999");
+
+			Assert.AreEqual(50.00, updatedRes.FinalPrice, 0.01);
+			Assert.AreEqual(newDate, updatedRes.TripDetails.TravelDate);
 		}
 	}
 }

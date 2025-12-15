@@ -11,40 +11,49 @@ namespace RailwayTicketing.Services
 		private List<UserProfile> _users = new List<UserProfile>();
 		private UserProfile _currentUser;
 
-		public void CreateProfile(string name, string address)
+		public void CreateProfile(string name, string address, int age, RailCardType cardType)
 		{
 			var user = new UserProfile
 			{
 				Id = Guid.NewGuid().ToString().Substring(0, 5),
 				Name = name,
-				Address = address
+				Address = address,
+				Age = age,
+				RailCard = cardType
 			};
 			_users.Add(user);
-			_currentUser = user; 
+			_currentUser = user;
 		}
 
 		public UserProfile GetCurrentUser() => _currentUser;
 
 		public void AddReservation(Reservation reservation)
 		{
-			if (_currentUser != null)
-			{
-				_currentUser.ReservationHistory.Add(reservation);
-			}
+			if (_currentUser != null) _currentUser.ReservationHistory.Add(reservation);
 		}
 
 		public bool CancelReservation(string reservationId)
 		{
-			if (_currentUser == null) return false;
-
-			var res = _currentUser.ReservationHistory.FirstOrDefault(r => r.ReservationId == reservationId);
-
+			var res = _currentUser?.ReservationHistory.FirstOrDefault(r => r.ReservationId == reservationId);
 			if (res != null)
 			{
-				res.IsCancelled = true; 
+				res.IsCancelled = true;
 				return true;
 			}
-			return false; 
+			return false;
+		}
+
+		public bool ModifyReservation(string reservationId, DateTime newDate, IPricingService pricingService)
+		{
+			var res = _currentUser?.ReservationHistory.FirstOrDefault(r => r.ReservationId == reservationId);
+			if (res == null || res.IsCancelled) return false;
+
+			res.TripDetails.TravelDate = newDate;
+
+			double newPrice = pricingService.CalculateFinalPrice(res.TripDetails, res.PassengerDetails);
+
+			res.FinalPrice = newPrice;
+			return true;
 		}
 
 		public List<Reservation> GetHistory()
