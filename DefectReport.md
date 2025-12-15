@@ -1,9 +1,12 @@
-Defect Report - Static Testing & Code Review
+# Defect Report - Static Testing & Code Review
 
-**Reviewer:** Me (The Developer) | **Date:** 2025-12-14
+**Review Date:** December 15, 2025
 
-| ID		 | Severity | Component | Description | Status |
-| **DEF-01** | Critical | `PricingService.cs` | **Logic Error:** The Rush Hour check was returning `train.BasePrice` directly. This inadvertently reset "Round Trip" tickets (which should be 2x price) back to the single fare price. | **FIXED** |
-| **DEF-02** | High | `Program.cs` | **Missing Functionality:** Profile creation did not allow selecting a Railcard type. It defaulted to `None`, meaning Senior profiles failed to get discounts. | **FIXED** |
-| **DEF-03** | Medium | `UserService.cs` | **Missing Requirement:** The system allowed creating and cancelling bookings but lacked the ability to "Modify" them as required by the spec. | **FIXED** |
-| **DEF-04** | Low | `Program.cs` | **UI/UX:** Train selection was hardcoded to the first item in the list, preventing users from testing different routes. | **FIXED** |
+### Identified Defects & Resolutions
+
+| ID | Severity | Component | Description | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **DEF-01** | Critical | Program.cs / Schedule | **Missing Schedule Data:** The system required manual entry of "Distance" and "Destination," violating Module 1 (Bulgarian Routes). Users could not select "Sofia -> Plovdiv". | **FIXED** (Implemented `ScheduleService`) |
+| **DEF-02** | High | UserService.cs | **Data Loss:** `CreateProfile` only accepted Name/Address. Age and Railcard details were discarded, causing the Pricing Engine (Module 2) to fail on Senior discounts. | **FIXED** (Updated method signature) |
+| **DEF-03** | Medium | UserService.cs | **Missing Requirement:** The system supported "Cancel" but lacked the "Modify Reservation" feature required by Module 3 specifications. | **FIXED** (Added `ModifyReservation` logic) |
+| **DEF-04** | Low | Program.cs | **UI Workflow:** The booking flow did not auto-fill passenger details from the logged-in user profile, forcing repetitive data entry. | **FIXED** (Auto-fill implemented) |
