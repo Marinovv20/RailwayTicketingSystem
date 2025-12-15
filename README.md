@@ -39,8 +39,8 @@ The solution follows a strict **Interface-Based Dependency Injection** pattern t
 All documentation required for grading is located in the `/docs` directory.
 
 ### Phase 1: Requirements
-* [Software Requirements Specification (SRS)](Requierments.md) - *Criteria #1*
-* [Gherkin Feature Files](Requierments.md) - *Criteria #2*
+* [Software Requirements Specification (SRS)](Requirements.md) - *Criteria #1*
+* [Gherkin Feature Files](Requirements.md) - *Criteria #2*
 * [Requirements Checklist](Checklist.md) - *Criteria #3*
 
 ### Phase 2: Test Engineering
